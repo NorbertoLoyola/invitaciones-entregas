@@ -425,12 +425,15 @@ const CONFIG = {
     "La nuestra nació en una pantalla, entre mensajes, llamadas que se estiraban hasta tarde y miles de kilómetros de distancia. De Sevilla, España, a Buenos Aires, Argentina, dos caminos que parecían tan lejanos encontraron la manera de unirse.",
     "El destino nos regaló la oportunidad de conocernos, el amor hizo que la distancia se achicara y hoy la felicidad nos invita a dar un paso más.",
     "Con el corazón lleno de ilusión y la alegría de haber encontrado en el otro un compañero de vida, queremos compartir con ustedes este momento tan especial: nuestro casamiento civil.",
-    "Porque el amor no tiene edad, fronteras ni distancias, y nunca es tarde para escribir una nueva historia. ¡Los esperamos para celebrar juntos nuestro sí! ❤️",
+    "Porque el amor no tiene edad, fronteras ni distancias y nunca es tarde para escribir una nueva historia. ¡Los esperamos para celebrar juntos nuestro sí! ❤️",
   ],
   firma: "Juana & Cristóbal",
   dressCode: "", // sin definir: la sección queda oculta
   spotifyUrl: "", // sin playlist del cliente y todavía no hay playlist curada de Lazo para bodas: la sección queda oculta
   fotos: 3,
+  // Encuadre de cada foto dentro de la polaroid (las fotos son verticales y se recortan arriba/abajo).
+  // foto-2: la pareja parada, con las cabezas muy arriba: se encuadra desde arriba para no cortarlas.
+  fotosPos: ["center 50%", "center 8%", "center 45%"],
   rsvpNota: "Nos haría muy felices contar con vos. Contanos a qué celebraciones vas a poder venir.",
   whatsappNumero: "5491123088812",
   whatsappMensaje: "¡Hola! Confirmo mi asistencia al casamiento de Juana y Cristóbal 🤍",
@@ -609,6 +612,7 @@ $('rsvp-btn').addEventListener('click', function(){
       if(desdeAtras === 0) div.dataset.top = '1';
       const img = document.createElement('img');
       img.src = fotos[fotoIdx]; img.alt = CONFIG.nombreUno + ' y ' + CONFIG.nombreDos; img.loading = 'lazy';
+      img.style.objectPosition = (CONFIG.fotosPos || [])[fotoIdx] || 'center';
       div.appendChild(img); stackBox.appendChild(div);
     });
     if(orden.length > 1){ const top = stackBox.querySelector('.polaroid[data-top="1"]'); if(top) attachDrag(top); }
