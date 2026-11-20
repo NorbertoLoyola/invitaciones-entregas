@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#F8F4EC">
+<title>Casamiento de Juana & Cristóbal — 04/12/2026</title>
+<meta name="description" content="Juana y Cristóbal se casan. Viernes 4 de diciembre de 2026, El Coronil (Sevilla).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Parisienne&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     Entrega Lazo — Casamiento Juana & Cristóbal (04/12/2026)
+     Basado en el motor CONFIG de bodas/botanico, restilizado a
+     marfil + dorado con rosas de línea (pedido de la clienta).
+     Todo el contenido editable vive en CONFIG (abajo).
+     ============================================================ */
+  :root{
+    --marfil: #F8F4EC;
+    --marfil-2: #EFE7D8;
+    --dorado: #B8995A;
+    --dorado-osc: #8C7140;
+    --dorado-claro: #D9C49A;
+    --texto: #4A4036;
+    --texto-suave: #7A6E60;
+    color-scheme: light;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; color-scheme:light; background:var(--marfil); }
+  body{
+    font-family:'Jost', sans-serif; font-weight:300; color:var(--texto);
+    background:
+      radial-gradient(circle at 15% 10%, rgba(255,255,255,.75), transparent 40%),
+      radial-gradient(circle at 85% 30%, rgba(217,196,154,.18), transparent 45%),
+      linear-gradient(180deg, var(--marfil) 0%, #F3EDE1 60%, var(--marfil-2) 140%);
+    background-attachment:fixed;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{ font-family:'Cormorant Garamond', serif; font-weight:500; }
+  h2{ font-size:2rem; color:var(--dorado-osc); letter-spacing:.04em; }
+  .script{ font-family:'Parisienne', cursive; font-weight:400; }
+  .italic{ font-family:'Cormorant Garamond', serif; font-style:italic; }
+
+  .wrap{ max-width:480px; margin:0 auto; position:relative; z-index:1; }
+  section{ padding:72px 28px; text-align:center; position:relative; }
+
+  .fade-up{ opacity:0; transform:translateY(24px); transition:opacity 1s ease, transform 1s ease; }
+  .fade-up.visible{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .fade-up{ opacity:1; transform:none; transition:none; } .sparkle{ display:none; } }
+
+  /* Destellos dorados de fondo */
+  .sparkles{ position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .sparkle{ position:absolute; border-radius:50%; background:var(--dorado-claro); opacity:0; animation:brillo ease-in-out infinite; }
+  @keyframes brillo{ 0%,100%{ opacity:0; transform:scale(.6); } 50%{ opacity:.8; transform:scale(1); } }
+
+  /* Separador dorado — línea + tres puntos */
+  .orn{ display:flex; align-items:center; justify-content:center; gap:10px; margin:18px auto; }
+  .orn::before,.orn::after{ content:''; height:1px; width:70px; background:var(--dorado-claro); }
+  .orn span{ display:flex; gap:4px; }
+  .orn i{ width:4px; height:4px; border-radius:50%; background:var(--dorado); display:block; }
+
+  /* Ramas de rosas (SVG propio) */
+  .rama{ position:absolute; width:150px; height:150px; pointer-events:none; color:var(--dorado); opacity:.85; }
+  .rama.tl{ top:-6px; left:-14px; }
+  .rama.tr{ top:-6px; right:-14px; transform:scaleX(-1); }
+  .rama.bl{ bottom:-6px; left:-14px; transform:scaleY(-1); }
+  .rama.br{ bottom:-6px; right:-14px; transform:scale(-1,-1); }
+
+  /* Hero — monograma en marco ovalado */
+  #hero{ min-height:96vh; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
+  .oval{
+    position:relative; width:230px; height:340px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+  }
+  .oval-svg{ position:absolute; inset:0; width:100%; height:100%; color:var(--dorado); overflow:visible; }
+  .oval .dots{ position:absolute; display:flex; gap:4px; }
+  .oval .dots.top{ top:-3px; } .oval .dots.bot{ bottom:-3px; }
+  .oval .dots i{ width:5px; height:5px; border-radius:50%; background:var(--dorado); display:block; }
+  .mono{ font-family:'Cormorant Garamond', serif; color:var(--dorado); line-height:.9; position:relative; z-index:1; }
+  .mono .l1{ font-size:6.2rem; display:block; margin-left:-40px; }
+  .mono .amp{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size:2.4rem; display:block; margin:-14px 0 -18px -8px; }
+  .mono .l2{ font-size:6.2rem; display:block; margin-left:46px; }
+  .hero-frase{ margin-top:34px; font-size:1.7rem; color:var(--texto-suave); letter-spacing:.06em; }
+  .scroll-hint{ margin-top:40px; font-size:.7rem; letter-spacing:.2em; color:var(--dorado-osc); text-transform:uppercase; opacity:.8; }
+
+  /* Nombres */
+  #nombres-section{ overflow:hidden; padding-bottom:110px; }
+  .names{ font-size:3.6rem; line-height:1.02; color:var(--dorado); font-weight:500; }
+  .names .amp{ display:block; font-size:2.6rem; color:var(--dorado-osc); }
+  .nos-casamos{ font-size:1.75rem; color:var(--texto-suave); margin-top:4px; }
+  .intro{ font-size:1.25rem; line-height:1.75; color:var(--texto); max-width:330px; margin:26px auto 0; }
+
+  /* Fecha */
+  .fecha-dia{ letter-spacing:.32em; font-size:1rem; color:var(--texto-suave); font-family:'Cormorant Garamond', serif; font-weight:600; }
+  .fecha-num{ font-family:'Cormorant Garamond', serif; font-size:6rem; line-height:1; color:var(--dorado); }
+  .fecha-mes{ letter-spacing:.32em; font-size:1.4rem; color:var(--dorado-osc); font-family:'Cormorant Garamond', serif; }
+  .fecha-anio{ letter-spacing:.3em; font-size:.85rem; color:var(--texto-suave); margin-top:6px; }
+
+  /* Countdown */
+  .countdown{ display:flex; justify-content:center; gap:16px; margin-top:24px; }
+  .cd-box{ min-width:58px; padding:10px 4px; border:1px solid var(--dorado-claro); border-radius:40px 40px 6px 6px; background:rgba(255,255,255,.45); }
+  .cd-num{ font-family:'Cormorant Garamond', serif; font-size:2rem; color:var(--dorado-osc); }
+  .cd-label{ font-size:.58rem; letter-spacing:.16em; text-transform:uppercase; color:var(--texto-suave); }
+
+  /* Historia */
+  .historia p{ font-size:1.18rem; line-height:1.8; max-width:340px; margin:0 auto 16px; color:var(--texto); }
+  .historia p:first-of-type::first-letter{ font-size:2.6rem; color:var(--dorado); float:left; line-height:.9; margin:4px 6px 0 0; font-style:normal; }
+  .firma{ font-size:2rem; color:var(--dorado-osc); margin-top:10px; }
+
+  /* Eventos */
+  .evento{ background:rgba(255,255,255,.55); border:1px solid var(--dorado-claro); border-radius:6px; padding:34px 22px 28px; position:relative; }
+  .evento + .evento{ margin-top:34px; }
+  .evento svg.icono{ width:76px; height:76px; color:var(--dorado); }
+  .evento-tipo{ letter-spacing:.3em; text-transform:uppercase; font-size:1.05rem; color:var(--dorado-osc); font-family:'Cormorant Garamond', serif; font-weight:600; margin-top:6px; }
+  .evento-lugar{ font-size:2.1rem; color:var(--dorado); margin-top:4px; line-height:1.15; }
+  .evento-cuando{ font-size:1.25rem; color:var(--texto); margin-top:6px; }
+  .evento-hora{ font-size:1rem; letter-spacing:.12em; color:var(--texto-suave); margin-top:4px; }
+  .evento-dir{ font-size:.82rem; color:var(--texto-suave); margin-top:6px; }
+  .map-embed{ width:100%; aspect-ratio:4/3; margin:18px 0 6px; border:1px solid var(--dorado-claro); border-radius:6px; overflow:hidden; }
+  .map-embed iframe{ width:100%; height:100%; border:0; display:block; }
+  .nota-viaje{ font-size:.95rem; color:var(--texto-suave); max-width:320px; margin:30px auto 0; line-height:1.6; }
+
+  .btn{
+    display:inline-block; margin-top:14px; padding:12px 26px;
+    background:var(--dorado); color:#fff; text-decoration:none;
+    font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; border-radius:30px;
+    border:none; cursor:pointer; font-family:inherit; transition:background .25s ease;
+  }
+  .btn:hover{ background:var(--dorado-osc); }
+  .btn.outline{ background:transparent; border:1px solid var(--dorado); color:var(--dorado-osc); }
+  .btn.outline:hover{ background:rgba(184,153,90,.1); }
+  .btns{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+  .btns .btn{ margin-top:8px; }
+
+  #floating-cta{
+    position:fixed; bottom:22px; left:50%; transform:translate(-50%, 180%);
+    margin:0; z-index:50; box-shadow:0 8px 24px rgba(140,113,64,.35);
+    transition:transform .35s ease; white-space:nowrap;
+  }
+  #floating-cta.visible{ transform:translate(-50%, 0); }
+  @media (prefers-reduced-motion: reduce){ #floating-cta{ transition:none; } }
+
+  #playlist-section,#dresscode-section{ padding-top:40px; padding-bottom:40px; }
+  .spotify-embed{ width:100%; margin-top:18px; border-radius:12px; overflow:hidden; }
+  .spotify-embed iframe{ width:100%; height:152px; border:0; display:block; }
+  .dresscode-tag{ display:inline-block; padding:6px 18px; border:1px solid var(--dorado); border-radius:20px; font-size:.85rem; margin-top:12px; }
+
+  /* Galería polaroid */
+  .polaroid-wrap{ display:flex; align-items:center; justify-content:center; gap:4px; margin-top:24px; }
+  .polaroid-stack{ position:relative; width:100%; max-width:250px; aspect-ratio:.72; touch-action:pan-y; }
+  .polaroid{
+    position:absolute; inset:0; background:#fff; padding:10px 10px 30px; border-radius:3px;
+    box-shadow:0 12px 26px rgba(74,64,54,.28);
+    transition:transform .35s cubic-bezier(.2,.8,.3,1), opacity .35s ease; will-change:transform;
+  }
+  .polaroid img{ width:100%; height:100%; object-fit:cover; display:block; background:#eee; pointer-events:none; }
+  .polaroid[data-top="1"]{ cursor:grab; }
+  .polaroid.dragging{ transition:none; cursor:grabbing; }
+  .polaroid.saliendo-izq{ transform:translateX(-160%) rotate(-20deg) !important; opacity:0; }
+  .polaroid.saliendo-der{ transform:translateX(160%) rotate(20deg) !important; opacity:0; }
+  .polaroid-arrow{ flex:0 0 auto; font-size:1.8rem; line-height:1; cursor:pointer; color:var(--dorado); opacity:.6; padding:6px 4px; user-select:none; }
+  .polaroid-arrow:hover{ opacity:1; }
+  .polaroid-hint{ font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; margin-top:14px; color:var(--texto-suave); }
+
+  /* RSVP */
+  .rsvp-note{ font-size:1.1rem; color:var(--texto-suave); max-width:300px; margin:14px auto 0; line-height:1.6; }
+  .rsvp-input{ display:block; width:100%; max-width:270px; margin:18px auto 0; padding:11px 16px; border-radius:24px; border:1px solid var(--dorado); font-family:inherit; font-size:.9rem; text-align:center; background:rgba(255,255,255,.8); color:var(--texto); }
+  .rsvp-input::placeholder{ color:var(--texto-suave); }
+  .rsvp-opciones{ max-width:270px; margin:16px auto 0; text-align:left; display:flex; flex-direction:column; gap:10px; }
+  .rsvp-opciones label{ display:flex; align-items:center; gap:10px; font-size:.9rem; cursor:pointer; }
+  .rsvp-opciones input{ accent-color:var(--dorado); width:17px; height:17px; }
+
+  /* Cierre — marco octogonal */
+  #cierre{ overflow:hidden; padding:90px 28px 100px; }
+  .octo{ position:relative; max-width:310px; margin:0 auto; padding:56px 26px; }
+  .octo svg.marco{ position:absolute; inset:0; width:100%; height:100%; color:var(--dorado); }
+  .octo .n{ font-size:2.2rem; color:var(--dorado); position:relative; }
+  .octo .t{ font-size:1.55rem; line-height:1.4; color:var(--texto); margin-top:12px; position:relative; }
+  .octo .f{ font-family:'Parisienne', cursive; font-size:1.35rem; color:var(--dorado-osc); margin-top:14px; position:relative; }
+
+  /* ---------- Animaciones (inspiradas en el video de referencia) ---------- */
+  /* Cada sección entra como una escena del video: los elementos aparecen en cascada,
+     uno detrás de otro, desde un leve desenfoque */
+  .cas{ opacity:0; }
+  .fade-up.visible > .cas, .fade-up.visible > .cas-grupo > .cas{
+    animation:aparecer 1s ease forwards; animation-delay:calc(var(--i) * 380ms + 150ms);
+  }
+  @keyframes aparecer{ from{ opacity:0; filter:blur(6px); transform:translateY(8px); } to{ opacity:1; filter:none; transform:none; } }
+  #hero .scroll-hint.cas{ animation-delay:4.4s; }
+
+  /* Ramas: aparecen suave y después se mecen apenas, como con brisa */
+  svg.rama{ opacity:0; }
+  .visible svg.rama{ animation:fundido 2s ease .3s forwards, mecer 8s ease-in-out 2.4s infinite; }
+  @keyframes fundido{ to{ opacity:.85; } }
+  @keyframes mecer{ 0%,100%{ rotate:0deg; } 30%{ rotate:-2deg; } 70%{ rotate:1.6deg; } }
+  .rama.tl{ transform-origin:0 0; } .rama.tr{ transform-origin:100% 0; }
+  .rama.bl{ transform-origin:0 100%; } .rama.br{ transform-origin:100% 100%; }
+
+  /* Marcos dorados que se trazan solos (óvalo de la portada y octógono del cierre) */
+  .octo svg.marco, .oval-svg{ stroke-dasharray:1; stroke-dashoffset:1; }
+  .visible .oval-svg{ animation:dibujar 2.4s ease .2s forwards; }
+  .visible .octo svg.marco{ animation:dibujar 2.6s ease .4s forwards; }
+  @keyframes dibujar{ to{ stroke-dashoffset:0; } }
+
+  /* Monograma: las iniciales aparecen desde el desenfoque, una después de otra */
+  .mono .l1, .mono .l2, .mono .amp{ opacity:0; }
+  .visible .mono .l1{ animation:aparecer 1.5s ease .9s forwards; }
+  .visible .mono .amp{ animation:aparecer 1.2s ease 1.5s forwards; }
+  .visible .mono .l2{ animation:aparecer 1.5s ease 1.9s forwards; }
+
+  /* Nombres: aparecen de a uno (Juana, &, Cristóbal) y después un destello dorado los recorre */
+  .names span:not(.amp){
+    display:inline-block;
+    background:linear-gradient(100deg, var(--dorado) 42%, #F4E6BE 50%, var(--dorado) 58%);
+    background-size:260% 100%; background-position:100% 0;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .names > span{ opacity:0; }
+  .visible .names #name-one{ animation:aparecer 1.3s ease .5s forwards, brillo-oro 6s ease-in-out 3.5s infinite; }
+  .visible .names .amp{ animation:aparecer 1.1s ease 1.2s forwards; }
+  .visible .names #name-two{ animation:aparecer 1.3s ease 1.8s forwards, brillo-oro 6s ease-in-out 3.5s infinite; }
+  @keyframes brillo-oro{ 0%{ background-position:100% 0; } 55%,100%{ background-position:0 0; } }
+
+  /* Fecha: el número se despliega de costado, como en el video */
+  .fade-up.visible > .fecha-num.cas{ animation:desplegar 1.1s cubic-bezier(.2,.8,.3,1) forwards; animation-delay:calc(var(--i) * 380ms + 150ms); }
+  @keyframes desplegar{ from{ opacity:.2; transform:scaleX(0); } to{ opacity:1; transform:none; } }
+
+  /* Frases que se escriben letra por letra, cada letra desde un leve desenfoque */
+  .lt{ display:inline-block; opacity:0; filter:blur(3px); transform:translateX(3px); }
+  .visible .lt{ animation:letra .6s ease forwards; animation-delay:calc(var(--d) * var(--vel, 45ms) + var(--base, 0ms)); }
+  @keyframes letra{ to{ opacity:1; filter:none; transform:none; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .octo svg.marco, .oval-svg{ stroke-dasharray:none; animation:none !important; }
+    .cas, svg.rama, .mono span, .names > span, .lt{ opacity:1 !important; filter:none !important; transform:none !important; animation:none !important; }
+    svg.rama{ opacity:.85 !important; }
+  }
+
+  footer{ padding:10px 28px 90px; text-align:center; }
+  footer .script{ font-size:2.2rem; color:var(--dorado-osc); }
+  footer p{ font-size:.9rem; color:var(--texto-suave); margin-top:8px; }
+</style>
+</head>
+<body>
+
+<!-- Rama de rosas en línea dorada (dibujo propio) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="rama" viewBox="0 0 150 150">
+      <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+        <path d="M8 142 C 30 110, 52 80, 70 58 S 110 18, 142 8"/>
+        <path d="M40 104 C 26 98, 18 86, 18 74 C 30 78, 40 90, 40 104 Z"/>
+        <path d="M52 86 C 60 72, 72 66, 84 66 C 78 78, 66 86, 52 86 Z"/>
+        <path d="M86 44 C 80 32, 82 20, 90 12 C 96 22, 94 34, 86 44 Z"/>
+        <path d="M104 32 C 116 26, 128 28, 136 34 C 124 40, 112 38, 104 32 Z"/>
+        <path d="M28 124 C 16 124, 8 116, 6 106 C 18 106, 26 114, 28 124 Z"/>
+      </g>
+      <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <circle cx="64" cy="62" r="17"/>
+        <path d="M64 50 C 72 52, 76 60, 72 66 C 68 72, 58 70, 57 63 C 56 57, 61 54, 65 56 C 69 58, 68 63, 64 63"/>
+        <path d="M50 54 C 52 46, 58 44, 62 45"/>
+        <path d="M78 70 C 76 78, 70 80, 66 79"/>
+      </g>
+      <g fill="currentColor">
+        <circle cx="120" cy="14" r="1.6"/><circle cx="128" cy="20" r="1.2"/><circle cx="14" cy="92" r="1.4"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<a id="floating-cta" class="btn" href="#rsvp-section">Confirmar asistencia</a>
+<div class="sparkles" id="sparkles"></div>
+
+<div class="wrap">
+
+  <section id="hero" class="fade-up">
+    <svg class="rama tl"><use href="#rama"/></svg>
+    <svg class="rama br"><use href="#rama"/></svg>
+    <div class="oval">
+      <svg class="oval-svg" viewBox="0 0 230 340" aria-hidden="true">
+        <rect x="1" y="1" width="228" height="338" rx="114" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <rect x="8" y="8" width="214" height="324" rx="107" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/>
+      </svg>
+      <div class="dots top"><i></i><i></i><i></i></div>
+      <div class="mono"><span class="l1" id="ini-uno"></span><span class="amp">&amp;</span><span class="l2" id="ini-dos"></span></div>
+      <div class="dots bot"><i></i><i></i><i></i></div>
+    </div>
+    <div class="hero-frase italic" id="hero-frase"></div>
+    <div class="scroll-hint">Deslizá para ver más ↓</div>
+  </section>
+
+  <section id="nombres-section" class="fade-up">
+    <div class="orn"><span><i></i><i></i><i></i></span></div>
+    <h1 class="names"><span id="name-one"></span><span class="amp">&amp;</span><span id="name-two"></span></h1>
+    <div class="orn"><span><i></i><i></i><i></i></span></div>
+    <div class="nos-casamos italic">Nos casamos</div>
+    <p class="intro italic" id="intro"></p>
+    <svg class="rama bl"><use href="#rama"/></svg>
+    <svg class="rama br"><use href="#rama"/></svg>
+  </section>
+
+  <section id="fecha-section" class="fade-up">
+    <div class="fecha-dia" id="fecha-dia"></div>
+    <div class="orn"><span><i></i><i></i><i></i></span></div>
+    <div class="fecha-num" id="fecha-num"></div>
+    <div class="fecha-mes" id="fecha-mes"></div>
+    <div class="fecha-anio" id="fecha-anio"></div>
+    <div class="countdown">
+      <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-label">días</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-label">hs</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-label">min</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-label">seg</div></div>
+    </div>
+  </section>
+
+  <section id="historia-section" class="fade-up">
+    <h2>Nuestra historia</h2>
+    <div class="orn"><span><i></i><i></i><i></i></span></div>
+    <div class="historia italic" id="historia"></div>
+    <div class="script firma" id="firma"></div>
+  </section>
+
+  <section id="eventos-section" class="fade-up">
+    <h2>Dónde y cuándo</h2>
+    <div class="orn"><span><i></i><i></i><i></i></span></div>
+    <div id="eventos"></div>
+    <p class="nota-viaje italic" id="nota-viaje"></p>
+  </section>
+
+  <section id="playlist-section" class="fade-up" style="display:none;">
+    <h2>Nuestra música</h2>
+    <div class="spotify-embed"><iframe id="spotify-frame" src="" loading="lazy" allow="encrypted-media"></iframe></div>
+  </section>
+
+  <section id="dresscode-section" class="fade-up" style="display:none;">
+    <h2>Dress code</h2>
+    <div class="dresscode-tag" id="dresscode-text"></div>
+  </section>
+
+  <section id="gallery-section" class="fade-up">
+    <h2>Nosotros</h2>
+    <div class="orn"><span><i></i><i></i><i></i></span></div>
+    <div class="polaroid-wrap">
+      <div class="polaroid-arrow" id="polaroid-prev">‹</div>
+      <div class="polaroid-stack" id="gallery-grid"></div>
+      <div class="polaroid-arrow" id="polaroid-next">›</div>
+    </div>
+    <div class="polaroid-hint" id="polaroid-hint">Deslizá para ver más</div>
+  </section>
+
+  <section id="rsvp-section" class="fade-up">
+    <h2>Confirmar asistencia</h2>
+    <div class="orn"><span><i></i><i></i><i></i></span></div>
+    <p class="rsvp-note italic" id="rsvp-note"></p>
+    <input type="text" class="rsvp-input" id="rsvp-nombre" placeholder="Tu nombre" autocomplete="name">
+    <div class="rsvp-opciones" id="rsvp-opciones"></div>
+    <button class="btn" id="rsvp-btn" type="button">Confirmar por WhatsApp</button>
+  </section>
+
+  <section id="cierre" class="fade-up">
+    <svg class="rama tl"><use href="#rama"/></svg>
+    <svg class="rama br"><use href="#rama"/></svg>
+    <div class="octo">
+      <svg class="marco" viewBox="0 0 310 360" preserveAspectRatio="none" aria-hidden="true">
+        <polygon points="70,2 240,2 308,70 308,290 240,358 70,358 2,290 2,70" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <polygon points="74,10 236,10 300,74 300,286 236,350 74,350 10,286 10,74" fill="none" stroke="currentColor" stroke-width=".7" opacity=".6"/>
+      </svg>
+      <div class="n italic" id="cierre-nombres"></div>
+      <div class="t italic">Será un honor compartir este día contigo</div>
+      <div class="f" id="cierre-fecha"></div>
+    </div>
+  </section>
+
+  <footer class="fade-up">
+    <div class="script" id="footer-names"></div>
+    <p id="footer-note"></p>
+  </footer>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — datos reales de la entrega.
+   Las horas llevan el huso de España (+01:00 en diciembre) para que
+   la cuenta regresiva y el calendario den bien también a los
+   invitados que abren la invitación desde Argentina.
+   ============================================================ */
+const CONFIG = {
+  nombreUno: "Juana",
+  nombreDos: "Cristóbal",
+  heroFrase: "Una nueva aventura",
+  intro: "Con mucha alegría queremos invitarte a celebrar uno de los días más importantes de nuestras vidas.",
+  fechaTexto: "Viernes 4 de diciembre de 2026",
+  fechaCountdown: "2026-12-04T17:00:00+01:00",
+  fechaDia: "Viernes", fechaNum: "04", fechaMes: "Diciembre", fechaAnio: "2026",
+  eventos: [
+    {
+      tipo: "Ceremonia civil",
+      icono: "ayuntamiento",
+      lugar: "Ayuntamiento de El Coronil",
+      cuando: "Viernes 4 de diciembre",
+      hora: "17:00 h",
+      inicio: "2026-12-04T17:00:00+01:00",
+      duracionHoras: 2,
+      direccion: "El Coronil, Sevilla, España",
+      mapsQuery: "Ayuntamiento de El Coronil, Sevilla, España",
+    },
+    {
+      tipo: "Recepción · Almuerzo",
+      icono: "copas",
+      lugar: "Restaurante Cueva de los Majuelos",
+      cuando: "Domingo 6 de diciembre",
+      hora: "14:00 h",
+      inicio: "2026-12-06T14:00:00+01:00",
+      duracionHoras: 4,
+      direccion: "Ctra. de Mancha Real s/n, 23110 Pegalajar, Jaén, España",
+      mapsQuery: "Restaurante Cueva de los Majuelos, Pegalajar, Jaén",
+    },
+  ],
+  notaViaje: "Los horarios son de España. Si venís de lejos, escribinos y te ayudamos a organizar el viaje.",
+  historia: [
+    "Hay historias que empiezan de la forma más inesperada y, sin que nos demos cuenta, se convierten en lo más lindo que nos pasó en la vida.",
+    "La nuestra nació en una pantalla. Un mensaje, después otro. Llamadas que se estiraban hasta tarde, aunque de un lado fuera de noche y del otro casi de madrugada. Y dos corazones que, con un océano en el medio, se fueron buscando hasta encontrarse.",
+    "De Sevilla a Buenos Aires aprendimos que el amor no sabe de kilómetros: que la distancia se achica cuando hay ganas, y que cuando dos almas se reconocen no hay frontera ni tiempo que puedan separarlas.",
+    "Hoy, después de tanto camino y de una historia que fuimos construyendo con ilusión, cariño y compañerismo, decidimos dar un paso más y unir nuestras vidas.",
+    "Porque nunca es tarde para volver a enamorarse, para empezar una historia nueva ni para cumplir el sueño de compartir la vida con alguien especial.",
+    "Por eso, con el corazón lleno, queremos que estés con nosotros en este momento tan nuestro: nuestra unión civil. Para celebrar el amor, los comienzos y la alegría inmensa de habernos encontrado. ❤️",
+  ],
+  firma: "Juana & Cristóbal",
+  dressCode: "", // sin definir: la sección queda oculta
+  spotifyUrl: "", // sin playlist del cliente y todavía no hay playlist curada de Lazo para bodas: la sección queda oculta
+  fotos: 3,
+  rsvpNota: "Nos haría muy felices contar con vos. Contanos a qué celebraciones vas a poder venir.",
+  whatsappNumero: "5491123088812",
+  whatsappMensaje: "¡Hola! Confirmo mi asistencia al casamiento de Juana y Cristóbal 🤍",
+  footerNota: "Gracias por ser parte de nuestra historia.",
+};
+
+// --- Registro de RSVP (planilla índice Lazo / Apps Script) ---
+const RSVP_LOG_URL = "https://script.google.com/macros/s/AKfycbwGLit2nqmSdkGmVQ0AkfWIrZCIO-vGibaWQ9VYZ7XsrhbU7KoK4t3XSYVMpSE_fyPB/exec";
+function registrarRSVP(datos){
+  if(!RSVP_LOG_URL) return;
+  fetch(RSVP_LOG_URL, {
+    method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(datos)
+  }).catch(()=>{});
+}
+
+const $ = id => document.getElementById(id);
+
+// --- Render ---
+$('ini-uno').textContent = CONFIG.nombreUno.charAt(0);
+$('ini-dos').textContent = CONFIG.nombreDos.charAt(0);
+$('hero-frase').textContent = CONFIG.heroFrase;
+$('name-one').textContent = CONFIG.nombreUno;
+$('name-two').textContent = CONFIG.nombreDos;
+$('intro').textContent = CONFIG.intro;
+$('fecha-dia').textContent = CONFIG.fechaDia.toUpperCase();
+$('fecha-num').textContent = CONFIG.fechaNum;
+$('fecha-mes').textContent = CONFIG.fechaMes.toUpperCase();
+$('fecha-anio').textContent = CONFIG.fechaAnio;
+CONFIG.historia.forEach(t => { const p = document.createElement('p'); p.textContent = t; $('historia').appendChild(p); });
+$('firma').textContent = CONFIG.firma;
+$('nota-viaje').textContent = CONFIG.notaViaje;
+$('rsvp-note').textContent = CONFIG.rsvpNota;
+$('cierre-nombres').textContent = CONFIG.nombreUno + ' & ' + CONFIG.nombreDos;
+$('cierre-fecha').textContent = CONFIG.fechaNum + ' • ' + CONFIG.fechaMes + ' • ' + CONFIG.fechaAnio;
+$('footer-names').textContent = CONFIG.nombreUno + ' & ' + CONFIG.nombreDos;
+$('footer-note').textContent = CONFIG.footerNota;
+if(CONFIG.dressCode){ $('dresscode-section').style.display=''; $('dresscode-text').textContent = CONFIG.dressCode; }
+if(CONFIG.spotifyUrl){
+  $('playlist-section').style.display='';
+  $('spotify-frame').src = CONFIG.spotifyUrl.replace('open.spotify.com/', 'open.spotify.com/embed/');
+}
+
+// --- Tarjetas de eventos (mapa + calendario por evento) ---
+const ICONOS = {
+  ayuntamiento: '<svg class="icono" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 32 L40 16 L68 32 Z"/><circle cx="40" cy="26" r="3"/><path d="M16 32 V60 M64 32 V60"/><path d="M26 36 V58 M34 36 V58 M46 36 V58 M54 36 V58"/><path d="M10 60 H70 M8 66 H72"/><path d="M40 16 V8 M40 8 L48 10 L40 12"/><path d="M6 50 C 2 42, 4 34, 10 30 M74 50 C 78 42, 76 34, 70 30"/></svg>',
+  copas: '<svg class="icono" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 22 L38 26 L35 42 C 33 48, 25 49, 22 44 C 20 40, 22 30, 24 22 Z"/><path d="M28 46 L24 62 M18 61 L30 64"/><path d="M56 22 L42 26 L45 42 C 47 48, 55 49, 58 44 C 60 40, 58 30, 56 22 Z"/><path d="M52 46 L56 62 M50 64 L62 61"/><path d="M40 8 V14 M37 11 H43 M30 12 L32 15 M50 12 L48 15"/><circle cx="29" cy="36" r="1"/><circle cx="51" cy="35" r="1"/><path d="M8 58 C 4 50, 6 42, 12 38 M72 58 C 76 50, 74 42, 68 38"/></svg>'
+};
+const fmtUTC = d => d.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+function calendarUrl(ev){
+  let dates;
+  if(ev.hora){
+    const ini = new Date(ev.inicio), fin = new Date(ini.getTime() + ev.duracionHoras*3600000);
+    dates = fmtUTC(ini) + '/' + fmtUTC(fin);
+  } else {
+    // sin hora definida: evento de día completo
+    const d = ev.inicio.slice(0,10).replace(/-/g,'');
+    const sig = new Date(ev.inicio.slice(0,10) + 'T12:00:00Z'); sig.setUTCDate(sig.getUTCDate()+1);
+    dates = d + '/' + sig.toISOString().slice(0,10).replace(/-/g,'');
+  }
+  const p = new URLSearchParams({
+    action:'TEMPLATE', text: ev.tipo + ' · ' + CONFIG.nombreUno + ' & ' + CONFIG.nombreDos,
+    dates, location: ev.lugar + ', ' + ev.direccion, details: CONFIG.intro
+  });
+  return 'https://calendar.google.com/calendar/render?' + p.toString();
+}
+CONFIG.eventos.forEach(ev => {
+  const card = document.createElement('div');
+  card.className = 'evento fade-up';
+  const q = encodeURIComponent(ev.mapsQuery);
+  card.innerHTML = `
+    ${ICONOS[ev.icono] || ''}
+    <div class="evento-tipo"></div>
+    <div class="evento-lugar script"></div>
+    <div class="evento-cuando italic"></div>
+    <div class="evento-hora"></div>
+    <div class="evento-dir"></div>
+    <div class="map-embed"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=${q}&output=embed"></iframe></div>
+    <div class="btns">
+      <a class="btn outline" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${q}">Cómo llegar</a>
+      <a class="btn outline" target="_blank" rel="noopener" href="${calendarUrl(ev)}">📅 Agendar</a>
+    </div>`;
+  card.querySelector('.evento-tipo').textContent = ev.tipo;
+  card.querySelector('.evento-lugar').textContent = ev.lugar;
+  card.querySelector('.evento-cuando').textContent = ev.cuando;
+  card.querySelector('.evento-hora').textContent = ev.hora ? ev.hora + ' (hora de España)' : 'Horario a confirmar';
+  card.querySelector('.evento-dir').textContent = ev.direccion;
+  $('eventos').appendChild(card);
+});
+
+// --- Animaciones: preparar trazos dibujables y frases letra por letra ---
+document.querySelectorAll('.octo svg.marco polygon, .oval-svg rect')
+  .forEach(e => e.setAttribute('pathLength', '1'));
+function letras(el, baseMs, velMs){
+  const txt = el.textContent;
+  el.textContent = '';
+  el.dataset.letras = '1';
+  el.setAttribute('aria-label', txt);
+  el.style.setProperty('--base', baseMs + 'ms');
+  if(velMs) el.style.setProperty('--vel', velMs + 'ms');
+  let i = 0;
+  txt.split(' ').forEach((palabra, wi, arr) => {
+    const w = document.createElement('span');
+    w.style.cssText = 'display:inline-block;white-space:nowrap';
+    w.setAttribute('aria-hidden', 'true');
+    [...palabra].forEach(ch => {
+      const s = document.createElement('span');
+      s.className = 'lt'; s.textContent = ch; s.style.setProperty('--d', i++);
+      w.appendChild(s);
+    });
+    el.appendChild(w);
+    if(wi < arr.length - 1){ el.appendChild(document.createTextNode(' ')); i++; }
+  });
+}
+letras($('hero-frase'), 2800);
+letras(document.querySelector('.nos-casamos'), 2600);
+letras($('intro'), 3300, 28);
+letras(document.querySelector('.octo .t'), 1300);
+letras($('cierre-fecha'), 3200);
+document.querySelectorAll('.evento-dir').forEach(el => letras(el, 2200, 35));
+
+// Cascada: dentro de cada escena los elementos aparecen uno detrás de otro.
+// Se saltean los que ya tienen su propia animación (letra por letra, nombres, monograma, ramas).
+function cascada(contenedor){
+  let i = 0;
+  [...contenedor.children].forEach(el => {
+    if(el.matches('svg.rama, .names, .oval, #hero-frase, script')) return;
+    if(el.dataset.letras){ i++; return; }
+    if(el.id === 'historia'){ el.classList.add('cas-grupo'); [...el.children].forEach(p => { p.classList.add('cas'); p.style.setProperty('--i', i++); }); return; }
+    el.classList.add('cas'); el.style.setProperty('--i', i++);
+  });
+}
+document.querySelectorAll('section.fade-up, .evento.fade-up, footer.fade-up').forEach(s => {
+  if(s.id === 'eventos-section'){ // las tarjetas tienen su propia escena
+    [...s.children].forEach((el, i) => { if(!el.matches('#eventos')){ el.classList.add('cas'); el.style.setProperty('--i', i); } });
+    return;
+  }
+  cascada(s);
+});
+
+// --- RSVP: el invitado elige a qué celebraciones va ---
+CONFIG.eventos.forEach((ev, i) => {
+  const lab = document.createElement('label');
+  lab.innerHTML = `<input type="checkbox" checked data-i="${i}"><span></span>`;
+  lab.querySelector('span').textContent = ev.tipo + ' (' + ev.cuando.replace(/^\S+\s/, '') + ')';
+  $('rsvp-opciones').appendChild(lab);
+});
+$('rsvp-btn').addEventListener('click', function(){
+  const nombre = ($('rsvp-nombre').value || '').trim() || 'Un invitado';
+  const elegidos = [...document.querySelectorAll('#rsvp-opciones input:checked')].map(c => CONFIG.eventos[+c.dataset.i].tipo);
+  const detalle = elegidos.length ? elegidos.join(' y ') : 'No voy a poder asistir';
+  const mensaje = elegidos.length
+    ? `Soy ${nombre}. ${CONFIG.whatsappMensaje} Voy a: ${detalle}.`
+    : `Soy ${nombre}. ¡Hola! Lamentablemente no voy a poder acompañarlos en el casamiento de ${CONFIG.nombreUno} y ${CONFIG.nombreDos}, pero les mando todo mi cariño 🤍`;
+  registrarRSVP({ evento: document.title, invitado: `${nombre} — ${detalle}`, fechaEvento: CONFIG.fechaTexto });
+  window.open(`https://wa.me/${CONFIG.whatsappNumero}?text=${encodeURIComponent(mensaje)}`, '_blank', 'noopener');
+});
+
+// --- Galería estilo Polaroid (pila swipeable) ---
+(function(){
+  const stackBox = $('gallery-grid');
+  const fotos = [];
+  for(let i=0;i<CONFIG.fotos;i++) fotos.push(`img/foto-${i+1}.jpg`);
+  if(!fotos.length){ $('gallery-section').style.display='none'; return; }
+  let orden = fotos.map((_,i)=>i);
+  function render(){
+    stackBox.innerHTML = '';
+    const visibles = orden.slice(0, Math.min(3, orden.length));
+    visibles.slice().reverse().forEach((fotoIdx, revI)=>{
+      const desdeAtras = visibles.length - 1 - revI;
+      const div = document.createElement('div');
+      div.className = 'polaroid';
+      const signo = fotoIdx % 2 === 0 ? -1 : 1;
+      const rot = desdeAtras === 0 ? 0 : signo * (4 + desdeAtras * 2);
+      div.style.transform = `translateY(${desdeAtras*7}px) scale(${1 - desdeAtras*0.045}) rotate(${rot}deg)`;
+      div.style.zIndex = String(10 - desdeAtras);
+      if(desdeAtras === 0) div.dataset.top = '1';
+      const img = document.createElement('img');
+      img.src = fotos[fotoIdx]; img.alt = CONFIG.nombreUno + ' y ' + CONFIG.nombreDos; img.loading = 'lazy';
+      div.appendChild(img); stackBox.appendChild(div);
+    });
+    if(orden.length > 1){ const top = stackBox.querySelector('.polaroid[data-top="1"]'); if(top) attachDrag(top); }
+  }
+  function siguiente(){ orden = [...orden.slice(1), orden[0]]; render(); }
+  function anterior(){ orden = [orden[orden.length-1], ...orden.slice(0,-1)]; render(); }
+  function irA(dir){
+    if(orden.length <= 1) return;
+    const top = stackBox.querySelector('.polaroid[data-top="1"]');
+    if(top){ top.classList.add(dir === 'siguiente' ? 'saliendo-izq' : 'saliendo-der'); setTimeout(()=> dir === 'siguiente' ? siguiente() : anterior(), 220); }
+  }
+  function attachDrag(el){
+    let startX = 0, dx = 0, activo = false;
+    el.addEventListener('pointerdown', e => { activo = true; dx = 0; startX = e.clientX; el.classList.add('dragging'); el.setPointerCapture(e.pointerId); });
+    el.addEventListener('pointermove', e => { if(!activo) return; dx = e.clientX - startX; el.style.transform = `translateX(${dx}px) rotate(${dx/18}deg)`; });
+    function soltar(){
+      if(!activo) return; activo = false; el.classList.remove('dragging');
+      if(dx <= -60){ el.classList.add('saliendo-izq'); setTimeout(siguiente, 220); }
+      else if(dx >= 60){ el.classList.add('saliendo-der'); setTimeout(anterior, 220); }
+      else render();
+    }
+    el.addEventListener('pointerup', soltar); el.addEventListener('pointercancel', soltar);
+  }
+  $('polaroid-prev').addEventListener('click', ()=> irA('anterior'));
+  $('polaroid-next').addEventListener('click', ()=> irA('siguiente'));
+  if(fotos.length <= 1){ $('polaroid-prev').style.visibility='hidden'; $('polaroid-next').style.visibility='hidden'; $('polaroid-hint').style.display='none'; }
+  render();
+})();
+
+// --- Destellos dorados ---
+(function(){
+  const c = $('sparkles');
+  for(let i=0;i<22;i++){
+    const s = document.createElement('div'); s.className = 'sparkle';
+    const size = 2 + Math.random()*3;
+    s.style.width = s.style.height = size + 'px';
+    s.style.left = Math.random()*100 + '%'; s.style.top = Math.random()*100 + '%';
+    s.style.animationDuration = (3 + Math.random()*4) + 's';
+    s.style.animationDelay = (Math.random()*5) + 's';
+    c.appendChild(s);
+  }
+})();
+
+// --- Countdown (a la ceremonia) ---
+function tick(){
+  const diff = Math.max(0, new Date(CONFIG.fechaCountdown) - new Date());
+  $('cd-d').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
+  $('cd-h').textContent = String(Math.floor(diff/3600000)%24).padStart(2,'0');
+  $('cd-m').textContent = String(Math.floor(diff/60000)%60).padStart(2,'0');
+  $('cd-s').textContent = String(Math.floor(diff/1000)%60).padStart(2,'0');
+}
+tick(); setInterval(tick, 1000);
+
+// --- Fade up on scroll ---
+const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.15});
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// --- CTA flotante ---
+(function(){
+  const cta = $('floating-cta'), hero = $('hero'), rsvp = $('rsvp-section');
+  let heroVisible = true, rsvpVisible = false;
+  const o = new IntersectionObserver(entries => {
+    entries.forEach(en => { if(en.target===hero) heroVisible = en.isIntersecting; if(en.target===rsvp) rsvpVisible = en.isIntersecting; });
+    cta.classList.toggle('visible', !heroVisible && !rsvpVisible);
+  }, {threshold:0.15});
+  o.observe(hero); o.observe(rsvp);
+})();
+</script>
+<div style="text-align:center;padding:18px 16px 26px;font-size:.72rem;letter-spacing:.02em;opacity:.45">Desarrollado por <strong>Lazo</strong> invitaciones digitales</div>
+</body>
+</html>
